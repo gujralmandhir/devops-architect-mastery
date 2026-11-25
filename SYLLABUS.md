@@ -1,54 +1,59 @@
 # Master DevOps Architect Syllabus
 
-## Module 0: Git & GitHub for DevOps (Production Workflows)
-- [ ] **0.1 Git Internals:** `.git` directory, blobs, trees, commits, HEAD, staging area, `git reflog`.
-- [ ] **0.2 Branching Strategies:** GitFlow vs GitHub Flow vs Trunk-Based Development (CI/CD ke liye best practice).
-- [ ] **0.3 Merge, Rebase & Conflict Resolution:** Fast-forward vs 3-way merge, interactive rebase (`rebase -i`), cherry-pick, merge conflicts resolve karna.
-- [ ] **0.4 GitHub DevOps Features:** Pull Requests, CODEOWNERS, Branch Protection Rules, SSH keys vs Fine-grained PATs, Webhooks, GitHub Secrets.
-- [ ] **0.5 Real-World Git Disasters:** Force-push recovery via `reflog`, detached HEAD fix, accidentally committed secrets cleanup (`git filter-repo`), broken rebase recovery.
+Basics se Architect level tak, 7 modules. Har sub-topic `/complete` ke baad `[x]` mark hoga.
 
-## Module 1: Linux Internals & Docker (Basics to Internals)
-- [ ] **1.1 Docker Architecture:** `dockerd`, `containerd`, `containerd-shim`, `runc`, OCI specs.
-- [ ] **1.2 Kernel Isolation:** Linux Namespaces (`pid`, `net`, `mnt`, `uts`, `ipc`, `user`), `cgroups v1/v2`, `seccomp`, `AppArmor`, Capabilities.
-- [ ] **1.3 Storage & Layers:** `OverlayFS2` (lowerdir/upperdir/merged), Copy-on-Write, Volumes vs Bind Mounts vs `tmpfs`.
-- [ ] **1.4 Dockerfile & BuildKit:** Multi-stage builds, layer caching, secret mounts, distroless/scratch, non-root `USER`, `ENTRYPOINT` vs `CMD`, PID 1 (`tini`).
-- [ ] **1.5 Docker Networking:** `bridge` (default vs user-defined DNS), `host`, `none`, `overlay` (VXLAN), `macvlan`, `iptables` NAT, MTU issues.
-- [ ] **1.6 Compose & Supply Chain Security:** Healthchecks, logging drivers, rootless Docker, Trivy CVE scanning, Cosign image signing.
-- [ ] **1.7 Docker Production Failures:** `OOMKilled` (137), `SIGTERM` ignored (143), orphan volume disk full, custom DNS failure, `exec format error`.
+## Module 0: Git & GitHub for DevOps Architects (Essentials only)
+- [ ] **0.1 Core Ops, SSH & PATs:** init/clone/add/commit/push/pull, remotes, SSH keys vs fine-grained PATs.
+- [ ] **0.2 Branching, PRs, Tags & Conflicts:** branch strategies, Pull Requests, tags/releases, merge conflict resolution.
+- [ ] **0.3 Incident Recovery, Revert & Secrets Cleanup:** `revert` vs `reset`, `reflog` recovery, leaked secrets cleanup.
 
-## Module 2: Complete CI/CD Engineering (Jenkins, GitLab CI & Azure DevOps)
-- [ ] **2.1 CI/CD Architecture Comparison:** Jenkins (Controller/Agent) vs GitLab CI (Server + Runners) vs Azure DevOps (Pipelines + Agents).
-- [ ] **2.2 Jenkins Deep Dive:** `JENKINS_HOME`, Declarative vs Scripted Pipelines, Groovy Shared Libraries (`vars/`, `src/`), CPS & `NotSerializableException`, JCasC.
-- [ ] **2.3 Jenkins Dynamic Agents & Security:** Docker-in-Docker vs Kaniko/Buildah on K8s, RBAC, Credentials/Vault, Webhooks & CSRF crumbs.
-- [ ] **2.4 GitLab CI/CD Complete:** `.gitlab-ci.yml`, Stages, Jobs, `needs` (DAG), Artifacts vs Cache, `rules`, Child/Parent & Multi-project pipelines, GitLab Container Registry.
-- [ ] **2.5 GitLab Runners Architecture:** Executors (Shell, Docker, Kubernetes), autoscaling runners, OIDC cloud auth.
-- [ ] **2.6 Azure DevOps (ADO) Complete:** ADO Org/Projects, Azure Repos, Azure Pipelines YAML (`stages`, `jobs`, `steps`, `templates`, `variable groups`, `environments` & approvals), Self-hosted VMSS/AKS agents, Workload Identity Service Connections.
-- [ ] **2.7 End-to-End Multi-Tool CI/CD Project:** Ek app ko Jenkins, GitLab CI, aur Azure DevOps teeno se build, Trivy scan, sign, aur Kubernetes par deploy karna (ArgoCD GitOps).
-- [ ] **2.8 Real-World CI/CD Failures:** Jenkins deadlocked executors & `NotSerializableException`, GitLab Runner `oom_killed` / socket errors, ADO Service Connection token expiry & queue bottlenecks.
+## Module 1: DevOps Scripting
+- [ ] **1.1 YAML:** syntax, data types, anchors/aliases, multi-doc files, common indentation traps.
+- [ ] **1.2 Bash & CLI Text Tools:** variables, loops, functions, exit codes, `set -euo pipefail`, `grep`/`sed`/`awk`/`jq`.
+- [ ] **1.3 Python for DevOps & Cloud SDKs:** `subprocess`, files/JSON/YAML, `requests`, boto3 / Azure SDK / Google Cloud SDK.
+- [ ] **1.4 PowerShell for DevOps & Azure:** objects & pipeline, modules, error handling, Az PowerShell module.
+- [ ] **1.5 Scripting Failures:** silent failures, quoting/word-splitting bugs, CRLF issues, dependency & auth errors.
 
-## Module 3: Kubernetes Architecture & Scratch On-Premises Setup (GCP VMs)
-- [ ] **3.1 Control Plane Internals:** `kube-apiserver` (authN/authZ/admission), `etcd` (Raft, MVCC, backup/restore, defrag), `kube-scheduler`, `kube-controller-manager`.
-- [ ] **3.2 Worker Node Internals:** `kubelet` (CRI, CNI, CSI, static pods, PLEG), `kube-proxy` (`iptables` vs `IPVS` vs `eBPF`), `containerd` & pause container.
-- [ ] **3.3 Scratch On-Prem K8s Cluster on GCP VMs (`kubeadm`):** 3 GCP VMs (1 Control Plane + 2 Workers) par scratch se `kubeadm init/join`, `containerd`, **Calico/Cilium CNI**, aur **MetalLB** setup karna.
-- [ ] **3.4 Core Workloads & Pod Patterns:** Pods, Init/Sidecar/Ambassador/Ephemeral debug containers, Deployments, StatefulSets (Headless services), DaemonSets, Jobs/CronJobs.
-- [ ] **3.5 Scheduling, Probes & QoS:** `liveness`/`readiness`/`startup` probes, `requests`/`limits`, QoS (`Guaranteed`, `Burstable`, `BestEffort`), Affinity/Anti-Affinity, Taints/Tolerations, `TopologySpreadConstraints`, PDBs.
-- [ ] **3.6 Configuration & Secrets:** ConfigMaps, Secrets, volume hot-reload, `etcd` encryption at rest, External Secrets Operator, Sealed Secrets.
-- [ ] **3.7 Networking Deep Dive:** Pod-to-Pod packet flow, Services (`ClusterIP`, `NodePort`, `LoadBalancer`, `Headless`), `EndpointSlices`, CoreDNS (`ndots:5` trap), NGINX Ingress vs Gateway API, `NetworkPolicies`.
-- [ ] **3.8 Storage & CSI:** PV, PVC, `StorageClass`, Access Modes (`RWO`, `ROX`, `RWX`), Reclaim Policies, On-Prem NFS/Longhorn vs Cloud CSI, VolumeSnapshots.
-- [ ] **3.9 Security & Governance:** X.509 certs, `kubeconfig`, ServiceAccounts, RBAC, Pod Security Standards, Admission Webhooks, Kyverno/OPA Gatekeeper, Falco, Audit logs.
-- [ ] **3.10 Autoscaling, Helm, Kustomize & GitOps:** HPA, VPA, KEDA, Helm charts, Kustomize overlays, ArgoCD GitOps, `kubeadm` cluster upgrades.
-- [ ] **3.11 Real-World K8s Production Failures:** `CrashLoopBackOff`, `ImagePullBackOff`, `CreateContainerConfigError`, `Pending` pods, `Evicted` pods, `NodeNotReady` / PLEG unhealthy, CoreDNS `ndots` throttling, PVC `Multi-Attach` / `Terminating` stuck, broken `ValidatingWebhook`, expired certs, `etcd` quorum loss.
+## Module 2: Linux Internals & Docker
+- [ ] **2.1 Basics & Architecture:** `dockerd`, `containerd`, `containerd-shim`, `runc`, OCI specs.
+- [ ] **2.2 Dockerfile:** instructions, layer caching, `ENTRYPOINT` vs `CMD`, non-root `USER`, PID 1.
+- [ ] **2.3 Multi-stage Builds & BuildKit:** multi-stage, cache/secret mounts, distroless/scratch images.
+- [ ] **2.4 OverlayFS & Volumes:** lowerdir/upperdir/merged, Copy-on-Write, volumes vs bind mounts vs `tmpfs`.
+- [ ] **2.5 Networking:** `bridge`, `host`, `none`, `overlay`, `macvlan`, `iptables` NAT, DNS, MTU.
+- [ ] **2.6 Kernel Namespaces, cgroups, Trivy & Cosign:** namespaces, cgroups v1/v2, capabilities, CVE scanning, image signing.
+- [ ] **2.7 Compose & Docker Failures:** Compose healthchecks/depends_on, `OOMKilled` (137), SIGTERM (143), disk full, `exec format error`.
 
-## Module 4: Managed Kubernetes & Cloud Architecture (GCP, AWS, Azure)
-- [ ] **4.1 GKE (Google Kubernetes Engine):** Standard vs Autopilot, VPC-native alias IPs, Workload Identity Federation, Cloud Load Balancing (NEGs), PD/Filestore CSI, Node Auto-Provisioning.
-- [ ] **4.2 AWS EKS:** Control plane, AWS VPC CNI (IP exhaustion & prefix delegation), IRSA & EKS Pod Identity, AWS Load Balancer Controller (ALB/NLB), EBS/EFS CSI, Karpenter.
-- [ ] **4.3 Azure AKS:** Control plane tiers, Azure CNI Overlay vs Pod Subnet, Microsoft Entra Workload ID, Application Gateway Ingress Controller (AGIC), Azure Disk/Files CSI, AKS Karpenter/VMSS.
-- [ ] **4.4 Multi-Cloud Cross-Environment Drills:** Cloud API throttling, IAM/Entra/GCP Workload Identity permission denied, cross-AZ PVC attachment deadlock (`WaitForFirstConsumer`), LoadBalancer `Pending` external IP.
+## Module 3: CI/CD Engineering
+- [ ] **3.1 CI/CD Architecture Comparison:** Jenkins vs GitLab CI vs Azure DevOps.
+- [ ] **3.2 Jenkins Basics & Pipelines:** controller/agent, `JENKINS_HOME`, Declarative vs Scripted pipelines.
+- [ ] **3.3 Jenkins Shared Libraries, K8s Agents & JCasC:** `vars/`/`src/`, dynamic Kubernetes agents, Configuration as Code.
+- [ ] **3.4 GitLab CI/CD & Runners:** `.gitlab-ci.yml`, stages, `needs`, `rules`, artifacts vs cache, runner executors.
+- [ ] **3.5 Azure DevOps Pipelines, Agents & Workload Identity:** YAML pipelines, templates, environments/approvals, self-hosted agents, Workload Identity service connections.
+- [ ] **3.6 Multi-Tool End-to-End Project:** one app built, scanned, signed and deployed to Kubernetes via Jenkins, GitLab CI and Azure DevOps.
+- [ ] **3.7 CI/CD Failures:** stuck executors, runner OOM/socket errors, expired service connections, queue bottlenecks.
 
-## Module 5: Production Observability & Monitoring
-- [ ] **5.1 Observability Architecture:** Metrics, Logs, Traces; Push vs Pull; RED & USE methods.
-- [ ] **5.2 Prometheus & Thanos:** Scraper, TSDB WAL, PromQL (`rate`, `irate`, `histogram_quantile`), `node-exporter`, `kube-state-metrics`, `cAdvisor`, Thanos HA.
-- [ ] **5.3 Grafana & Alertmanager:** `kube-prometheus-stack`, Golden Signals dashboards, Alertmanager routing (Slack/PagerDuty), inhibition & alert fatigue prevention.
-- [ ] **5.4 Centralized Logging & Tracing:** `Fluent Bit`, Grafana Loki (LogQL) vs EFK/OpenSearch, OpenTelemetry Collector + Grafana Tempo / Jaeger.
-- [ ] **5.5 CI/CD & Cloud Monitoring:** Jenkins/GitLab Runner metrics, AWS CloudWatch/AMP, Azure Monitor, GCP Cloud Operations.
-- [ ] **5.6 Observability Failure Drills:** Prometheus `OOMKilled` (high label cardinality), Fluent Bit backpressure log drops, missing `kube-state-metrics`, alert storms during node drain.
+## Module 4: Kubernetes & Scratch On-Prem Setup on GCP VMs
+- [ ] **4.1 Control Plane & Worker Internals:** `kube-apiserver`, `etcd`, scheduler, controller-manager, `kubelet`, `kube-proxy`, `containerd`.
+- [ ] **4.2 Scratch kubeadm Cluster on 3 GCP VMs:** 1 control plane + 2 workers, `kubeadm init/join`, Calico/Cilium CNI, MetalLB.
+- [ ] **4.3 Workloads:** Pods, init/sidecar containers, Deployments, StatefulSets, DaemonSets, Jobs/CronJobs.
+- [ ] **4.4 Probes, QoS & Scheduling:** liveness/readiness/startup, requests/limits, QoS classes, affinity, taints/tolerations, PDBs.
+- [ ] **4.5 ConfigMaps, Secrets & ESO:** ConfigMaps, Secrets, etcd encryption at rest, External Secrets Operator.
+- [ ] **4.6 Networking, CoreDNS, Gateway API & NetworkPolicies:** Services, EndpointSlices, CoreDNS (`ndots:5`), Ingress vs Gateway API, NetworkPolicies.
+- [ ] **4.7 Storage & CSI:** PV/PVC, StorageClass, access modes, reclaim policies, on-prem vs cloud CSI.
+- [ ] **4.8 RBAC, PSS, Webhooks, Kyverno & Falco:** ServiceAccounts, RBAC, Pod Security Standards, admission webhooks, Kyverno, Falco.
+- [ ] **4.9 HPA, KEDA, Helm, Kustomize & ArgoCD:** autoscaling, Helm charts, Kustomize overlays, GitOps with ArgoCD.
+- [ ] **4.10 K8s Production Failures:** `CrashLoopBackOff`, `ImagePullBackOff`, `Pending`, `NodeNotReady`, PVC stuck, broken webhooks, expired certs, etcd quorum loss.
+
+## Module 5: Managed K8s & Cloud Architecture
+- [ ] **5.1 GKE:** Standard vs Autopilot, VPC-native networking, Workload Identity, node pools.
+- [ ] **5.2 AWS EKS:** VPC CNI, IRSA / Pod Identity, managed node groups, Karpenter, ALB controller.
+- [ ] **5.3 Azure AKS:** Azure CNI, Entra Workload ID, node pools, AGIC / Application Gateway for Containers.
+- [ ] **5.4 Multi-Cloud Drills:** cross-cloud failures, IAM/networking misconfigurations, cost & quota gotchas.
+
+## Module 6: Production Observability & Monitoring
+- [ ] **6.1 Pillars, RED & USE:** metrics, logs, traces, SLIs/SLOs, RED and USE methods.
+- [ ] **6.2 Prometheus & Thanos:** scraping, PromQL, recording rules, long-term storage with Thanos.
+- [ ] **6.3 Grafana & Alertmanager:** dashboards, alert rules, routing, silencing, inhibition.
+- [ ] **6.4 Fluent Bit, Loki, EFK, OpenTelemetry & Tempo:** log pipelines, OTel Collector, distributed tracing.
+- [ ] **6.5 CI/CD & Cloud Monitoring:** pipeline metrics, CloudWatch, Azure Monitor, Google Cloud Monitoring.
+- [ ] **6.6 Monitoring Failures:** missing metrics, cardinality explosions, alert fatigue, dropped logs, broken traces.
