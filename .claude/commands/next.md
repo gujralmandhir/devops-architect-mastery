@@ -1,0 +1,1 @@
+`SYLLABUS.md` padho, pehla unchecked (`[ ]`) topic dhundo, aur uske liye **Step 1 (Architecture + 4-Environment Comparison)** aur **Step 2 (Real-Time Hands-On Lab)** Hinglish mein execute karo. Response 450 words ke andar rakho.
