@@ -1,1 +1,1 @@
-Current unchecked topic ke active lab (`labs/`) ko inspect karo aur **Step 3 (Production Outage / Break Drill)** execute karo. Chupke se ek real-world production issue inject karo aur mujhe sirf symptom batao.
+Inspect the active lab in `labs/` for the current unchecked topic in `SYLLABUS.md`. Silently inject a realistic real-world production failure without revealing the cause, report only the alert/symptom, and wait for me to debug and fix it.

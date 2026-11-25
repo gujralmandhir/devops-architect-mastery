@@ -1,1 +1,1 @@
-Current broken lab ko debug karne ke liye ek progressive diagnostic hint (command ya log path) Hinglish mein do, bina final fix bataye.
+Give me one progressive diagnostic hint (command to run or log to inspect) for the current broken lab without giving away the final fix.

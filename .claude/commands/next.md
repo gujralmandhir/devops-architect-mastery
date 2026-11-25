@@ -1,1 +1,1 @@
-`SYLLABUS.md` padho, pehla unchecked (`[ ]`) topic dhundo, aur uske liye **Step 1 (Architecture + 4-Environment Comparison)** aur **Step 2 (Real-Time Hands-On Lab)** Hinglish mein execute karo. Response 450 words ke andar rakho.
+Read `SYLLABUS.md`, find the first unchecked (`[ ]`) topic, break it into small interactive parts, and teach **only Part 1 (Micro-Theory + ASCII Diagram)** in Hinglish and English. Stop and ask a check-in question before moving forward.

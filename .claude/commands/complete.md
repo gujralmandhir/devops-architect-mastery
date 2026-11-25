@@ -1,1 +1,1 @@
-Current lab mein mera fix check karo. Agar issue resolve ho gaya hai, toh **Step 4 (Architect Audit, Git Sync & Reset)** execute karo: fix audit karo, production prevention tips do, `SYLLABUS.md` mein `[x]` mark karo, `NOTES.md` mein 3-line summary likho, aur mujhe `git commit/push` + `/clear` karne ko bolo.
+Verify my fix in the active lab. If resolved, audit my solution, share Architect-level prevention best practices across On-Prem/AWS/Azure/GCP, check off `[x]` in `SYLLABUS.md`, append a 3-line summary to `NOTES.md`, and remind me to `git push` and run `/clear`.
